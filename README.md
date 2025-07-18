@@ -19,7 +19,6 @@ Telegram bot for predictions from OpenAI
 - ![NestJS](https://img.shields.io/badge/NestJS-E0234E.svg?&logo=nestjs&logoColor=white)
 - ![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?&logo=typescript&logoColor=white)
 - ![OpenAI](https://img.shields.io/badge/OpenAI-412991.svg?&logo=openai&logoColor=white)
-- ![Docker](https://img.shields.io/badge/Docker-%230db7ed.svg?&logo=docker&logoColor=white) + docker-compose – for easy deployment
 
 ---
 
@@ -53,15 +52,6 @@ cp .env.example .env
 
 # 7. Start the bot
 python3 bot.py
-```
-
-### 🐳 Running with Docker
-
-> Requirements: Docker Compose
-
-```bash
-# Run from the project root
-docker-compose up --build
 ```
 
 ---

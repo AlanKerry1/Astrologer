@@ -56,11 +56,10 @@ async def check_subscription(bot: Bot, user_id: int) -> bool:
     """Проверяет, подписан ли пользователь на канал."""
     try:
         member = await bot.get_chat_member(chat_id=CHANNEL_ID, user_id=user_id)
-        # Проверяем статус. Важно, чтобы пользователь был не 'left' или 'kicked'.
         return member.status in (ChatMemberStatus.MEMBER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.CREATOR, ChatMemberStatus.RESTRICTED)
     except Exception as e:
-        print(f"Ошибка при проверке подписки: {e}")  # Логируем ошибку
-        return False  # Обрабатываем ошибки, возвращаем False
+        print(f"Ошибка при проверке подписки: {e}")
+        return False
 
 
 
@@ -70,7 +69,7 @@ async def start(message: types.Message, state: FSMContext):
     await state.clear()
     keyboard = keyboards.get_main_keyboard()
     photo = FSInputFile("photos/cards.jpg")
-    await message.answer_photo(caption="🤬 Эй, ты, чего застыл? Я – Вещун Залупный, и я не люблю ждать!\n 😠 Готов узнать горькую правду о себе? Выбирай, на что ты сегодня отважишься: гороскоп, совместимость, или Таро? 😈", photo=photo, reply_markup=keyboard)
+    await message.answer_photo(caption="🤬 Эй, ты, чего застыл? Я – Astrologer, и я не люблю ждать!\n 😠 Готов узнать горькую правду о себе? Выбирай, на что ты сегодня отважишься: гороскоп, совместимость, или Таро? 😈", photo=photo, reply_markup=keyboard)
 
 
 #ДЕКОРАТОР ДЛЯ ПОДПИСОК
@@ -85,7 +84,7 @@ def check_subscription_decorator():
                 else:
                     keyboard = keyboards.get_subscribe_keyboard()
                     await message.answer(
-                        "Слышь! 👀 Вещун Залупный не для всех! 🤫 Хочешь заглянуть в будущее? 🔮 Подпишись на канал – получи VIP-пропуск в мир тайн! 🗝 Иначе будешь гадать на кофейной гуще! ☕️",
+                        "Слышь! 👀 Astrologer не для всех! 🤫 Хочешь заглянуть в будущее? 🔮 Подпишись на канал – получи VIP-пропуск в мир тайн! 🗝 Иначе будешь гадать на кофейной гуще! ☕️",
                         reply_markup=keyboard,
                     )
 
@@ -105,10 +104,10 @@ def check_subscription_callback_decorator():
             else:
                 keyboard = keyboards.get_subscribe_keyboard()
                 await callback.message.answer(
-                    "Слышь! 👀 Вещун Залупный не для всех! 🤫 Хочешь заглянуть в будущее? 🔮 Подпишись на канал – получи VIP-пропуск в мир тайн! 🗝 Иначе будешь гадать на кофейной гуще! ☕️",
+                    "Слышь! 👀 Astrologer не для всех! 🤫 Хочешь заглянуть в будущее? 🔮 Подпишись на канал – получи VIP-пропуск в мир тайн! 🗝 Иначе будешь гадать на кофейной гуще! ☕️",
                     reply_markup=keyboard,
                 )
-                await callback.answer()  # Важно ответить на callback, чтобы убрать "часики"
+                await callback.answer()
 
         return wrapper
 
@@ -121,7 +120,7 @@ async def callback_cancel(callback: types.CallbackQuery, state: FSMContext, bot:
     await state.clear()
     await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id) 
     keyboard = keyboards.get_main_keyboard()
-    await callback.message.answer("🤬 Эй, ты, чего застыл? Я – Вещун Залупный, и я не люблю ждать!\n 😠 Готов узнать горькую правду о себе? Выбирай, на что ты сегодня отважишься: гороскоп, совместимость, или Таро? 😈", reply_markup=keyboard)
+    await callback.message.answer("🤬 Эй, ты, чего застыл? Я – Astrologer, и я не люблю ждать!\n 😠 Готов узнать горькую правду о себе? Выбирай, на что ты сегодня отважишься: гороскоп, совместимость, или Таро? 😈", reply_markup=keyboard)
 
 #ПРОВЕРКА ПОДПИСКИ
 @router.callback_query( F.data.in_({"проверка"}))
@@ -134,14 +133,14 @@ async def callback_cancel(callback: types.CallbackQuery, state: FSMContext, bot:
         await callback.message.answer("Ага! 😎 Подписка есть – ты в теме! 👍 Готов к правде? 😈 Выбирай, что нагадать! 🔮")
     else:
         keyboard = keyboards.get_subscribe_keyboard()
-        await callback.message.answer("Э, нет! 🙅‍♂️ Думал, проскочишь? Вещун Залупный всё видит! 👁️ Не подписался – нет и предсказаний! 🚫 Подпишись, и будет тебе счастье! ✨", reply_markup=keyboard)
+        await callback.message.answer("Э, нет! 🙅‍♂️ Думал, проскочишь? Astrologer всё видит! 👁️ Не подписался – нет и предсказаний! 🚫 Подпишись, и будет тебе счастье! ✨", reply_markup=keyboard)
     await callback.answer()  # Важно ответить на callback, чтобы убрать "часики"
 
 @router.message(F.text == "Отмена")
 async def start(message: types.Message, state: FSMContext):
     await state.clear()
     keyboard = keyboards.get_main_keyboard()
-    await message.answer("🤬 Эй, ты, чего застыл? Я – Вещун Залупный, и я не люблю ждать!\n 😠 Готов узнать горькую правду о себе? Выбирай, на что ты сегодня отважишься: гороскоп, совместимость, или Таро? 😈", reply_markup=keyboard)
+    await message.answer("🤬 Эй, ты, чего застыл? Я – Astrologer, и я не люблю ждать!\n 😠 Готов узнать горькую правду о себе? Выбирай, на что ты сегодня отважишься: гороскоп, совместимость, или Таро? 😈", reply_markup=keyboard)
 
 #ТАРО
 @router.message(F.text == "🃏Таро")
@@ -149,13 +148,13 @@ async def start(message: types.Message, state: FSMContext):
 async def start(message: types.Message, state: FSMContext):
     await state.set_state(TaroState.name)
     keyboard = keyboards.get_cancel_keyboard()
-    await message.answer("🖤 Хочешь узнать своё будущее, через карты Таро?\n Ну, ладно, Вещун Залупный поможет. 🔮 Для начала, введи свое имя, чтобы я знал, с кем имею дело. 😏", reply_markup=keyboard)
+    await message.answer("🖤 Хочешь узнать своё будущее, через карты Таро?\n Ну, ладно, Astrologer поможет. 🔮 Для начала, введи свое имя, чтобы я знал, с кем имею дело. 😏", reply_markup=keyboard)
     await message.answer("Введите ваше имя:")
 @router.message(TaroState.name)
 async def start(message: types.Message, state: FSMContext):
     await state.update_data(name=message.text)
     await state.set_state(TaroState.quest)
-    await message.answer("🤨 Так, имя есть. Теперь изложи, что у тебя там за беда приключилась? \n🙄 Опиши свою ситуацию, Вещуну Залупному всё можно рассказать. 🤫")
+    await message.answer("🤨 Так, имя есть. Теперь изложи, что у тебя там за беда приключилась? \n🙄 Опиши свою ситуацию, мне всё можно рассказать. 🤫")
     await message.answer("Введите ваш вопрос/ситуацию:")
 
 @router.message(TaroState.quest)
@@ -174,7 +173,7 @@ async def callback_taro(callback: types.CallbackQuery, state: FSMContext, bot: B
     elif callback.data == "5_cards":
         await state.update_data(cards="5")
 
-    await bot.send_message(chat_id=callback.message.chat.id, text="Вещун колдует...") # Отправляем сообщение "Запрос отправлен"
+    await bot.send_message(chat_id=callback.message.chat.id, text="Astrologer колдует...") # Отправляем сообщение "Запрос отправлен"
     data = await state.get_data()
 
     await state.clear()
@@ -194,14 +193,14 @@ async def callback_taro(callback: types.CallbackQuery, state: FSMContext, bot: B
 async def sovm1(message: types.Message, state: FSMContext):
     await state.set_state(SovmesState.name)
     keyboard = keyboards.get_cancel_keyboard()
-    await message.answer("😈 Ну что, красавчик(ца), раз решил(а) узнать правду, то давай начнем с простого! \n🤪 Введи своё имя, чтобы я, Вещун Залупный, не путался, когда буду рассказывать про твою совместимость. 🖕", reply_markup=keyboard)
+    await message.answer("😈 Ну что, красавчик(ца), раз решил(а) узнать правду, то давай начнем с простого! \n🤪 Введи своё имя, чтобы я, Astrologer, не путался, когда буду рассказывать про твою совместимость. 🖕", reply_markup=keyboard)
     await message.answer("Введите ваше имя:")
 
 @router.message(SovmesState.name)
 async def sovm2(message: types.Message, state: FSMContext):
     await state.update_data(name=message.text)
     await state.set_state(SovmesState.name2)
-    await message.answer("🤬 Окей, твоё имя у меня. Теперь введи имя того бедолаги, с кем ты хочешь узнать совместимость. \n😈 Ну, давай, не тупи, Вещун Залупный ждёт! ⏳")
+    await message.answer("🤬 Окей, твоё имя у меня. Теперь введи имя того бедолаги, с кем ты хочешь узнать совместимость. \n😈 Ну, давай, не тупи, Astrologer ждёт! ⏳")
     await message.answer("Введите второе имя:")
 
 @router.message(SovmesState.name2)
@@ -217,7 +216,7 @@ async def callback_sovmes1(callback: types.CallbackQuery, state: FSMContext):
     await state.update_data(sign=sign)
     await state.set_state(SovmesState.sign2)
     keyboard = keyboards.get_sign_keyboard()
-    await callback.message.answer("И последний шаг: какой знак зодиака у твоего партнера? 😈 Выбирай! Вещун Залупный почти готов раскрыть всю правду. 🔮", reply_markup=keyboard)
+    await callback.message.answer("И последний шаг: какой знак зодиака у твоего партнера? 😈 Выбирай! Astrologer почти готов раскрыть всю правду. 🔮", reply_markup=keyboard)
 
 @router.callback_query(SovmesState.sign2, F.data.in_({"Овен", "Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Козерог", "Водолей", "Рыбы", "Стрелец"}))
 async def callback_sovmes2(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
@@ -229,7 +228,7 @@ async def callback_sovmes2(callback: types.CallbackQuery, state: FSMContext, bot
     await state.clear()
     await callback.answer()
     keyboard = keyboards.get_main_keyboard()
-    await bot.send_message(chat_id=callback.message.chat.id, text="Вещун колдует...", reply_markup=keyboard) # Отправляем сообщение "Запрос отправлен"
+    await bot.send_message(chat_id=callback.message.chat.id, text="Astrologer колдует...", reply_markup=keyboard) # Отправляем сообщение "Запрос отправлен"
     bot_mes = await http_requests.getCompatibility(data["name"], data["name2"], data["sign"], data["sign2"])
     await bot.send_message(chat_id=callback.message.chat.id, text=bot_mes, reply_markup=keyboard)
     await bot.send_message(
@@ -247,9 +246,9 @@ async def goroskop(message: types.Message, state: FSMContext):
         user_clicks[user_id] = datetime.now()
         await state.set_state(GoroskopState.sign)
         keyboard = keyboards.get_sign_keyboard()
-        await message.answer("🔮Давай, не стесняйся, выбери свой значок среди этого зоопарка. \nВещун Залупный готов тебе выдать самую правдивую (и смешную) предсказашку. 🤪", reply_markup=keyboard)
+        await message.answer("🔮Давай, не стесняйся, выбери свой значок среди этого зоопарка. \nAstrologer готов тебе выдать самую правдивую (и смешную) предсказашку. 🤪", reply_markup=keyboard)
     else:
-        await message.answer("🙄 Ну вот, опять ты! Я, 🔮Вещун Залупный, не попка-дурак повторять одно и то же. \n😒 Приходи завтра, если терпения хватит. ⏳")
+        await message.answer("🙄 Ну вот, опять ты! Я, 🔮Astrologer, не попка-дурак повторять одно и то же. \n😒 Приходи завтра, если терпения хватит. ⏳")
     
 @router.callback_query(GoroskopState.sign, F.data.in_({"Овен", "Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Козерог", "Водолей", "Рыбы", "Стрелец"}))
 async def callback_goroskop(callback: types.CallbackQuery, state: FSMContext, bot:Bot):
@@ -259,7 +258,7 @@ async def callback_goroskop(callback: types.CallbackQuery, state: FSMContext, bo
     await state.clear()
     await callback.answer()
     await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id) 
-    await bot.send_message(chat_id=callback.message.chat.id, text="Вещун колдует...") # Отправляем сообщение "Запрос отправлен"
+    await bot.send_message(chat_id=callback.message.chat.id, text="Astrologer колдует...") # Отправляем сообщение "Запрос отправлен"
     bot_mes = await http_requests.getHoroscope(data["sign"])
     await bot.send_message(chat_id=callback.message.chat.id, text=bot_mes)
     await bot.send_message(
@@ -280,5 +279,5 @@ async def unknown_message(message: types.Message, state: FSMContext):
     if current_state == GoroskopState.sign:
           await message.answer("🤨 Это что вообще такое? Ты, случаем, не перепутал кнопки? 🙄 Я просил выбрать знак зодиака, а не придумывать новые. Выбирай, давай!")
     else:
-        await message.answer("😈 Не понял тебя. Я, Вещун Залупный, жду твоих внятных действий, а не этой ахинеи. 🖕 Введи команду /start, и тогда поговорим. 😒")
+        await message.answer("😈 Не понял тебя. Я, Astrologer, жду твоих внятных действий, а не этой ахинеи. 🖕 Введи команду /start, и тогда поговорим. 😒")
 

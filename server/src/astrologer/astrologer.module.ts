@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { VeshunService } from './veshun.service';
-import { VeshunController } from './veshun.controller';
+import { AstrologerService } from './astrologer.service';
+import { AstrologerController } from './astrologer.controller';
 import { OpenaiModule } from './openai/openai.module';
 import { OpenaiService } from './openai/openai.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -8,8 +8,8 @@ import OpenAI from 'openai';
 
 @Module({
   imports: [OpenaiModule, ConfigModule.forRoot()],
-  controllers: [VeshunController],
-  providers: [VeshunService, OpenaiService,
+  controllers: [AstrologerController],
+  providers: [AstrologerService, OpenaiService,
     {
       provide: OpenAI,
       useFactory: (configService: ConfigService) => {
@@ -20,4 +20,4 @@ import OpenAI from 'openai';
     },
   ],
 })
-export class VeshunModule {}
+export class AstrologerModule {}

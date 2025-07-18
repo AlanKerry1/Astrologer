@@ -52,8 +52,8 @@ def get_sex_keyboard():
 
 def get_subscribe_keyboard():
         keyboard = [
-            [InlineKeyboardButton(text="Подписаться", callback_data="подписаться", url='https://t.me/veshun_zalupniy')],
-            [InlineKeyboardButton(text="Проверить Подписку", callback_data="не")],
+            [InlineKeyboardButton(text="Подписаться", callback_data="подписаться", url='https://t.me/astrologer77777')],
+            [InlineKeyboardButton(text="Проверить Подписку", callback_data="проверка")],
         ]
         return InlineKeyboardMarkup(inline_keyboard=keyboard)
 

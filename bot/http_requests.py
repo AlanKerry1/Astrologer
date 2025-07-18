@@ -28,20 +28,20 @@ async def make_async_request(url: str, data: dict):
 
 async def getTaro(name: str, question: str, cardsNumber: str):
     """Асинхронная функция для получения расклада Таро."""
-    url = os.getenv("GADALKA_API_URL") + "/taro"
+    url = os.getenv("ASTROLOGER_API_URL") + "/taro"
     data = {"name": name, "question": question, "cardsNumber": cardsNumber}
     return await make_async_request(url, data)
 
 
 async def getHoroscope(zodiak: str):
     """Асинхронная функция для получения гороскопа."""
-    url = os.getenv("GADALKA_API_URL") + "/horoscope"
+    url = os.getenv("ASTROLOGER_API_URL") + "/horoscope"
     data = {"zodiak": zodiak}
     return await make_async_request(url, data)
 
 
 async def getCompatibility(name1: str, name2: str, zodiak1: str, zodiak2: str):
     """Асинхронная функция для получения совместимости."""
-    url = os.getenv("GADALKA_API_URL") + "/compatibility"
+    url = os.getenv("ASTROLOGER_API_URL") + "/compatibility"
     data = {"name1": name1, "name2": name2, "zodiak1": zodiak1, "zodiak2": zodiak2}
     return await make_async_request(url, data)
