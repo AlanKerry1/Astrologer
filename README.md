@@ -4,7 +4,7 @@ Telegram bot for predictions from OpenAI
 
 ## 🚀 Demo
 
-🌐 Coming soon...
+🌐 https://t.me/astrologer777_bot
 
 ---
 
