@@ -1,57 +1,35 @@
-# 💬 Astrologer
+# 🧙‍♂️ Astrologer
 
 Telegram bot for predictions from OpenAI
 
-## 🚀 Demo
-
-🌐 https://t.me/astrologer777_bot
+Demonstration of integration external API
 
 ---
 
 ## 🛠️ Technologies Used
 
-### 🖥️ Bot
-- ![Python](https://img.shields.io/badge/Python-3776AB.svg?&logo=python&logoColor=white)
-- ![Aiogram](https://img.shields.io/badge/Aiogram-2C2C2C.svg?style=flat&color=blue)
-
-### 🧪 Backend 
-- ![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)
-- ![NestJS](https://img.shields.io/badge/NestJS-E0234E.svg?&logo=nestjs&logoColor=white)
-- ![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?&logo=typescript&logoColor=white)
-- ![OpenAI](https://img.shields.io/badge/OpenAI-412991.svg?&logo=openai&logoColor=white)
+| 🤖 Bot | 🧪 Backend |
+|----------|----------|
+|![Python](https://img.shields.io/badge/Python-3776AB.svg?&logo=python&logoColor=white)|![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)|
+|![Aiogram](https://img.shields.io/badge/Aiogram-2C2C2C.svg?style=flat&color=blue)|![NestJS](https://img.shields.io/badge/NestJS-E0234E.svg?&logo=nestjs&logoColor=white)|
+|✨|![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?&logo=typescript&logoColor=white)|
+|✨|![OpenAI](https://img.shields.io/badge/OpenAI-412991.svg?&logo=openai&logoColor=white)|
 
 ---
 
-## 📦 Installation and Running
+## 🐳 Running  with Docker (🪟Windows)
 
-### 🔧 Regular run
-
-> Requirements: Node.js, Python3
+> Requirements: Docker Compose, OpenAI API key, TG Bot token
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/AlanKerry1/Astrologer.git
-cd Astrologer
+# Run from the project root
+copy .env.docker.example .env.docker
+```
+You should set your env variables
 
-# 2. Install dependencies
-cd server
-npm install
-
-# 3. Configure .env
-cp .env.example .env
-
-# 4. Start the server
-npm run start:dev
-
-# 5. Install dependencies
-cd ../bot
-pip install -r requirements.txt
-
-# 6. Configure .env
-cp .env.example .env
-
-# 7. Start the bot
-python3 bot.py
+```bash
+# Run from the project root
+docker-compose up -d
 ```
 
 ---
