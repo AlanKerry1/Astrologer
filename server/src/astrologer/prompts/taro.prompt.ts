@@ -1,4 +1,4 @@
-import { GetTaroDto } from "src/astrologer/dto/get-taro.dto";
+import { GetTaroDto } from "../dto/get-taro.dto";
 
 export default function({name, question, cardsNumber}: GetTaroDto) {
 	return `

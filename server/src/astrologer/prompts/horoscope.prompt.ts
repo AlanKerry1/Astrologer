@@ -1,4 +1,4 @@
-import { GetHoroscopeDto } from "src/astrologer/dto/get-horoscope.dto";
+import { GetHoroscopeDto } from "../dto/get-horoscope.dto";
 
 const getDate = () => {
 	return `${new Date().getDate()}.${new Date().getMonth() < 9 ? 0 : ""}${new Date().getMonth() + 1}.${new Date().getFullYear()}`;

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OpenaiService } from './openai/openai.service';
 import { GetTaroDto } from './dto/get-taro.dto';
-import { getCompatibilityPrompt, getHoroscopePrompt, getTaroPrompt } from 'src/astrologer/prompts';
+import { getCompatibilityPrompt, getHoroscopePrompt, getTaroPrompt } from './prompts';
 import { GetHoroscopeDto } from './dto/get-horoscope.dto';
 import { GetCompatibilityDto } from './dto/get-compatibility.dto';
 

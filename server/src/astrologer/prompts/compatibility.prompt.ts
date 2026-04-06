@@ -1,4 +1,4 @@
-import { GetCompatibilityDto } from "src/astrologer/dto/get-compatibility.dto";
+import { GetCompatibilityDto } from "../dto/get-compatibility.dto";
 
 export default function({name1, name2, zodiak1, zodiak2}: GetCompatibilityDto) {
 	return `
