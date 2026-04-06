@@ -15,6 +15,10 @@ Demonstration of integration external API
 |✨|![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?&logo=typescript&logoColor=white)|
 |✨|![OpenAI](https://img.shields.io/badge/OpenAI-412991.svg?&logo=openai&logoColor=white)|
 
+| 🐳 DevOps |
+|:--------:|
+|![Docker](https://img.shields.io/badge/Docker-%230db7ed.svg?&logo=docker&logoColor=white)|
+
 ---
 
 ## 🐳 Running  with Docker (🪟Windows)
